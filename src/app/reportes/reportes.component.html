@@ -1,0 +1,48 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px;
+background-image: url(); background-color:#7c65f9; background-size: cover; background-position: center top;">
+  <div class="container-fluid">
+    <h2 style="color: white;">
+      Reporte de fechas
+    </h2>
+    <div class="header-body" id="tabla">
+      <!-- Card stats -->
+      <div class="row justify-content-center">
+        <div>
+          <label for="start" style="color: white;">Fecha: </label>
+          <input type="date" (keyup)="calendario()" [(ngModel)]="fecha" id="inputdate" name="inputdate">&nbsp;&nbsp;
+          <div class="btn-group">
+            <button type="button" class="btn btn-light" (click)="calendar()">{{button}}</button>
+            <button type="button" id="btn1" style="display: none;" class="btn btn-light" (click)="consultaReporte()">Consultar</button>
+            <button type="button" id="btn2" style="display: none;" class="btn btn-light" (click)="pdf()">Imprimir</button>
+          </div>
+          <div class="row">
+            <h4 style="color: white;">Primera fecha: {{f1}}</h4>&nbsp;&nbsp;<h4 style="color: white;">Segunda fecha: {{f2}}</h4>
+          </div>
+          <br><br>
+        </div>
+        <table id="pdf" class="table tb table-striped" style="background-color: white;">
+          <thead style="background-color: rgb(16, 16, 58); color: aliceblue;">
+            <tr>
+              <th>#</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Cédula</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let registros of tabla">
+              <td>{{registros.numero}}</td>
+              <td>{{registros.fecha}}</td>
+              <td>{{registros.hora}}</td>
+              <td>{{registros.cedula}}</td>
+              <td>{{registros.p_nombre}}</td>
+              <td>{{registros.p_apellido}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+

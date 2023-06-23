@@ -1,0 +1,1395 @@
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <button type="button" class="btn btn-light" routerLinkActive="active" [routerLink]="['/detalles']">Regresar</button>
+    <button type="button" class="btn btn-light" (click)="pdf()">Imprimir historia clinica</button>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7" id="pdf">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Historia clinica</h3>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row" style="text-align: center;">
+              <div class="table-responsive">
+                <table class="table table-bordered" >
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="2">INSTITUCIÓN</th>
+                      <th scope="col" colspan="2">NOMBRE</th>
+                      <th scope="col" colspan="2">APELLIDO</th>
+                      <th scope="col" colspan="1">SEXO</th>
+                      <th scope="col" colspan="1">EDAD</th>
+                      <th scope="col" colspan="2">N° HISTORIA CLINICA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th colspan="2"><input type="text" class="form-control form-control-alternative" disabled="true" [(ngModel)]="empresa" name="empresa" ></th>
+                      <th colspan="2"><input type="text" class="form-control form-control-alternative" disabled="true" [(ngModel)]="nombre" name="nombre" ></th>
+                      <th colspan="2"><input type="text" class="form-control form-control-alternative" disabled="true" [(ngModel)]="apellido" name="apellido" ></th>
+                      <th colspan="1"><input type="text" class="form-control form-control-alternative" disabled="true" [(ngModel)]="sexo" name="sexo" ></th>
+                      <th colspan="1"><input type="text" class="form-control form-control-alternative" disabled="true" [(ngModel)]="edad" name="edad" ></th>
+                      <th colspan="2"><input class="form-control form-control-alternative" name="id_historia" disabled="true" [(ngModel)]="id_historia" type="text"  ></th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <br>
+            <div class="row" style="text-align: center;">
+              <div class="table-responsive">
+                <table class="table table-bordered" >
+                  <thead>
+                    <tr>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">Menor de <br>1 año</label></th>
+                      <th scope="col"><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_edad1()"><img src="./assets/img/brand/{{edad1}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">1-4 años<br>&nbsp;</label></th>
+                      <th scope="col"><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_edad2()"><img src="./assets/img/brand/{{edad2}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">5-9 años <br>programado</label></th>
+                      <th scope="col"><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_edad3()"><img src="./assets/img/brand/{{edad3}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">5-14 años no <br>programado</label></th>
+                      <th scope="col"><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_edad4()"><img src="./assets/img/brand/{{edad4}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">10-14 años <br>programado</label></th>
+                      <th scope="col"><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_edad5()"><img src="./assets/img/brand/{{edad5}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">15-19 años<br></label></th>
+                      <th scope="col"><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_edad6()"><img src="./assets/img/brand/{{edad6}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">Mayor de 20 <br>años</label></th>
+                      <th scope="col"><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_edad7()"><img src="./assets/img/brand/{{edad7}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{tip}}"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">Embarazada<br></label></th>
+                      <th scope="col"><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_edad8()"><img src="./assets/img/brand/{{edad8}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{tip}}"></button></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="table-responsive">
+                <table class="table table-bordered" >
+                  <thead>
+                    <tr>
+                      <th scope="col">1 MOTIVO DE CONSULTA
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        ANOTAR LA CAUSA DEL PROBLAMA EN LA VERSIÓN DEL INFORMANTE</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th><textarea class="form-control form-control-alternative" style="background-color: rgb(240, 240, 240);" [(ngModel)]="motivo" name="motivo" type="text"></textarea></th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="table-responsive">
+                <table class="table table-bordered" >
+                  <thead>
+                    <tr>
+                      <th scope="col">2 ENFERMEDAD O PROBLEMA ACTUAL</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th><textarea class="form-control form-control-alternative" style="background-color: rgb(240, 240, 240);" [(ngModel)]="descripcion" name="descripcion" type="text"  ></textarea></th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="table-responsive">
+                <table class="table table-bordered" >
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="19">3 ANTECEDENTES PERSOLANES Y FAMILIARES</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">1 Alergia <br>antibiótico</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_antecedentes1()"><img src="./assets/img/brand/{{antecedentes1}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">2<br>Alergia</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_antecedentes2()"><img src="./assets/img/brand/{{antecedentes2}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">3<br>Hemo</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_antecedentes3()"><img src="./assets/img/brand/{{antecedentes3}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">4<br>VIH/SID</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_antecedentes4()"><img src="./assets/img/brand/{{antecedentes4}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">5<br>Tuber</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_antecedentes5()"><img src="./assets/img/brand/{{antecedentes5}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">6<br>Asma</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_antecedentes6()"><img src="./assets/img/brand/{{antecedentes6}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">7<br>Diabet</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_antecedentes7()"><img src="./assets/img/brand/{{antecedentes7}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{tip}}"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">8<br>Hiper</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_antecedentes8()"><img src="./assets/img/brand/{{antecedentes8}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{tip}}"></button></th>
+                      <th scope="col"><label class="form-check-label" for="inlineRadio1">9 Enf<br>Cardiaca</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_antecedentes9()"><img src="./assets/img/brand/{{antecedentes9}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{tip}}"></button></th>
+                      <th scope="col"><label class="form-control-label">10. Otro</label></th>
+                    </tr>
+                    <tr>
+                      <th colspan="19"><textarea class="form-control form-control-alternative" style="background-color: rgb(240, 240, 240);" [(ngModel)]="otro" name="otro" type="text"  ></textarea></th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="table-responsive">
+                <table class="table table-bordered" >
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="8">4 SIGNOS VITALES</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th><label class="form-control-label">Presion arterial</label></th>
+                      <th><input class="form-control form-control-alternative" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" style="background-color: rgb(240, 240, 240);" [(ngModel)]="p_arterial" name="p_arterial" type="text"  ></th>
+                      <th><label class="form-control-label">Frecuencia cardiaca</label></th>
+                      <th><input class="form-control form-control-alternative" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" style="background-color: rgb(240, 240, 240);" [(ngModel)]="f_cardiaca" name="f_cardiaca"  type="text"  ></th>
+                      <th><label class="form-control-label">Temperatura</label></th>
+                      <th><input class="form-control form-control-alternative" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" style="background-color: rgb(240, 240, 240);" [(ngModel)]="temperatura" name="temperatura"  type="text"  ></th>
+                      <th><label class="form-control-label">F. Respiratoria</label></th>
+                      <th><input class="form-control form-control-alternative" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" style="background-color: rgb(240, 240, 240);" [(ngModel)]="f_respiratoria" name="f_respiratoria" type="text"  ></th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="table-responsive">
+                <table class="table table-bordered" >
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="16">5 EXAMENES DEL SISTEMA ESTOMATOGNÁTICO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="col"><label class="form-control-label" style="text-align: center;">1 <br> Labios</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_estomatognatico1()"><img src="./assets/img/brand/{{labios}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</th>
+                      <th scope="col"><label class="form-control-label" style="text-align: center;">2 <br> Mejillas</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_estomatognatico2()"><img src="./assets/img/brand/{{mejillas}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</th>
+                      <th scope="col"><label class="form-control-label" style="text-align: center;">3 Maxilar<br> superior</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_estomatognatico3()"><img src="./assets/img/brand/{{max_superior}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</th>
+                      <th scope="col"><label class="form-control-label" style="text-align: center;">4 Maxilar<br> inferior</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_estomatognatico4()"><img src="./assets/img/brand/{{max_inferior}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</th>
+                      <th scope="col"><label class="form-control-label" style="text-align: center;">5 <br> Lengua</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_estomatognatico5()"><img src="./assets/img/brand/{{lengua}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</th>
+                      <th scope="col"><label class="form-control-label" style="text-align: center;">6 <br> Paladar</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_estomatognatico6()"><img src="./assets/img/brand/{{paladar}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</th>
+                      <th scope="col"><label class="form-control-label" style="text-align: center;">7 <br> Piso</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_estomatognatico7()"><img src="./assets/img/brand/{{piso}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</th>
+                      <th scope="col"><label class="form-control-label" style="text-align: center;">8 <br> Carrillos</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_estomatognatico8()"><img src="./assets/img/brand/{{carrillos}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</th>
+                    </tr>
+                    <tr>
+                      <th scope="col"><label class="form-control-label" style="text-align: center;">9 Glandulas <br> salivales</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_estomatognatico9()"><img src="./assets/img/brand/{{glandulas_salivales}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-control-label" style="text-align: center;">10 Oro <br> faringe</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_estomatognatico10()"><img src="./assets/img/brand/{{oro_faringe}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-control-label" style="text-align: center;">11 <br> A.T.M</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_estomatognatico11()"><img src="./assets/img/brand/{{atm}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                      <th scope="col"><label class="form-control-label" style="text-align: center;">12 <br> Ganglios</label></th>
+                      <th scope="col">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_estomatognatico12()"><img src="./assets/img/brand/{{ganglios}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
+          <hr>
+          <h6 class="heading-small text-muted mb-4">6 ODONTOGRAMA</h6>
+          <br>
+          <div id="adulto">
+            <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              18 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              17 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              16 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              15 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              14 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              13 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              12 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              21 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              22 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              23 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              24 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              25 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              26 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              27 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              28</h3>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar18a()"><img src="./assets/img/brand/{{d18a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t18a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar18b()"><img src="./assets/img/brand/{{d18b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t18b}}"></button>
+              <button type="button"  (click)="cambiar18c()"><img src="./assets/img/brand/{{d18c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t18c}}"></button>
+              <button type="button"  (click)="cambiar18d()"><img src="./assets/img/brand/{{d18d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t18d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar18e()"><img src="./assets/img/brand/{{d18e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t18e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar17a()"><img src="./assets/img/brand/{{d17a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t17a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar17b()"><img src="./assets/img/brand/{{d17b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t17b}}"></button>
+              <button type="button"  (click)="cambiar17c()"><img src="./assets/img/brand/{{d17c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t17c}}"></button>
+              <button type="button"  (click)="cambiar17d()"><img src="./assets/img/brand/{{d17d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t17d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar17e()"><img src="./assets/img/brand/{{d17e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t17e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar16a()"><img src="./assets/img/brand/{{d16a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t16a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar16b()"><img src="./assets/img/brand/{{d16b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t16b}}"></button>
+              <button type="button"  (click)="cambiar16c()"><img src="./assets/img/brand/{{d16c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t16c}}"></button>
+              <button type="button"  (click)="cambiar16d()"><img src="./assets/img/brand/{{d16d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t16d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar16e()"><img src="./assets/img/brand/{{d16e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t16e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar15a()"><img src="./assets/img/brand/{{d15a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t15a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar15b()"><img src="./assets/img/brand/{{d15b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t15b}}"></button>
+              <button type="button"  (click)="cambiar15c()"><img src="./assets/img/brand/{{d15c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t15c}}"></button>
+              <button type="button"  (click)="cambiar15d()"><img src="./assets/img/brand/{{d15d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t15d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar15e()"><img src="./assets/img/brand/{{d15e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t15e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar14a()"><img src="./assets/img/brand/{{d14a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t14a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar14b()"><img src="./assets/img/brand/{{d14b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t14b}}"></button>
+              <button type="button"  (click)="cambiar14c()"><img src="./assets/img/brand/{{d14c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t14c}}"></button>
+              <button type="button"  (click)="cambiar14d()"><img src="./assets/img/brand/{{d14d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t14d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar14e()"><img src="./assets/img/brand/{{d14e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t14e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar13a()"><img src="./assets/img/brand/{{d13a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t13a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar13b()"><img src="./assets/img/brand/{{d13b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t13b}}"></button>
+              <button type="button"  (click)="cambiar13c()"><img src="./assets/img/brand/{{d13c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t13c}}"></button>
+              <button type="button"  (click)="cambiar13d()"><img src="./assets/img/brand/{{d13d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t13d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar13e()"><img src="./assets/img/brand/{{d13e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t13e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar12a()"><img src="./assets/img/brand/{{d12a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t12a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar12b()"><img src="./assets/img/brand/{{d12b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t12b}}"></button>
+              <button type="button"  (click)="cambiar12c()"><img src="./assets/img/brand/{{d12c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t12c}}"></button>
+              <button type="button"  (click)="cambiar12d()"><img src="./assets/img/brand/{{d12d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t12d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar12e()"><img src="./assets/img/brand/{{d12e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t12e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar11a()"><img src="./assets/img/brand/{{d11a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t11a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar11b()"><img src="./assets/img/brand/{{d11b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t11b}}"></button>
+              <button type="button"  (click)="cambiar11c()"><img src="./assets/img/brand/{{d11c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t11c}}"></button>
+              <button type="button"  (click)="cambiar11d()"><img src="./assets/img/brand/{{d11d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t11d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar11e()"><img src="./assets/img/brand/{{d11e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t11e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar21a()"><img src="./assets/img/brand/{{d21a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t21a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar21b()"><img src="./assets/img/brand/{{d21b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t21b}}"></button>
+              <button type="button"  (click)="cambiar21c()"><img src="./assets/img/brand/{{d21c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t21c}}"></button>
+              <button type="button"  (click)="cambiar21d()"><img src="./assets/img/brand/{{d21d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t21d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar21e()"><img src="./assets/img/brand/{{d21e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t21e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar22a()"><img src="./assets/img/brand/{{d22a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t22a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar22b()"><img src="./assets/img/brand/{{d22b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t22b}}"></button>
+              <button type="button"  (click)="cambiar22c()"><img src="./assets/img/brand/{{d22c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t22c}}"></button>
+              <button type="button"  (click)="cambiar22d()"><img src="./assets/img/brand/{{d22d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t22d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar22e()"><img src="./assets/img/brand/{{d22e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t22e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar23a()"><img src="./assets/img/brand/{{d23a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t23a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar23b()"><img src="./assets/img/brand/{{d23b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t23b}}"></button>
+              <button type="button"  (click)="cambiar23c()"><img src="./assets/img/brand/{{d23c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t23c}}"></button>
+              <button type="button"  (click)="cambiar23d()"><img src="./assets/img/brand/{{d23d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t23d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar23e()"><img src="./assets/img/brand/{{d23e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t23e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar24a()"><img src="./assets/img/brand/{{d24a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t24a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar24b()"><img src="./assets/img/brand/{{d24b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t24b}}"></button>
+              <button type="button"  (click)="cambiar24c()"><img src="./assets/img/brand/{{d24c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t24c}}"></button>
+              <button type="button"  (click)="cambiar24d()"><img src="./assets/img/brand/{{d24d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t24d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar24e()"><img src="./assets/img/brand/{{d24e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t24e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar25a()"><img src="./assets/img/brand/{{d25a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t25a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar25b()"><img src="./assets/img/brand/{{d25b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t25b}}"></button>
+              <button type="button"  (click)="cambiar25c()"><img src="./assets/img/brand/{{d25c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t25c}}"></button>
+              <button type="button"  (click)="cambiar25d()"><img src="./assets/img/brand/{{d25d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t25d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar25e()"><img src="./assets/img/brand/{{d25e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t25e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar26a()"><img src="./assets/img/brand/{{d26a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t26a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar26b()"><img src="./assets/img/brand/{{d26b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t26b}}"></button>
+              <button type="button"  (click)="cambiar26c()"><img src="./assets/img/brand/{{d26c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t26c}}"></button>
+              <button type="button"  (click)="cambiar26d()"><img src="./assets/img/brand/{{d26d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t26d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar26e()"><img src="./assets/img/brand/{{d26e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t26e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar27a()"><img src="./assets/img/brand/{{d27a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t27a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar27b()"><img src="./assets/img/brand/{{d27b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t27b}}"></button>
+              <button type="button"  (click)="cambiar27c()"><img src="./assets/img/brand/{{d27c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t27c}}"></button>
+              <button type="button"  (click)="cambiar27d()"><img src="./assets/img/brand/{{d27d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t27d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar27e()"><img src="./assets/img/brand/{{d27e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t27e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar28a()"><img src="./assets/img/brand/{{d28a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t28a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  (click)="cambiar28b()"><img src="./assets/img/brand/{{d28b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t28b}}"></button>
+              <button type="button"  (click)="cambiar28c()"><img src="./assets/img/brand/{{d28c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t28c}}"></button>
+              <button type="button"  (click)="cambiar28d()"><img src="./assets/img/brand/{{d28d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t28d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button"  (click)="cambiar28e()"><img src="./assets/img/brand/{{d28e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t28e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div>&nbsp;&nbsp;</div>
+            <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              55 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              54 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              53 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              52 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              51 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              61 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              62 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              63 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              64 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              65
+            </h3>
+            <div class="btn-group-vertical">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar55a()"><img src="./assets/img/brand/{{d55a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t55a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar55b()"><img src="./assets/img/brand/{{d55b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t55b}}"></button>
+              <button type="button" (click)="cambiar55c()"><img src="./assets/img/brand/{{d55c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t55c}}"></button>
+              <button type="button" (click)="cambiar55d()"><img src="./assets/img/brand/{{d55d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t55d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar55e()"><img src="./assets/img/brand/{{d55e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t55e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar54a()"><img src="./assets/img/brand/{{d54a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t54a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar54b()"><img src="./assets/img/brand/{{d54b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t54b}}"></button>
+              <button type="button" (click)="cambiar54c()"><img src="./assets/img/brand/{{d54c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t54c}}"></button>
+              <button type="button" (click)="cambiar54d()"><img src="./assets/img/brand/{{d54d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t54d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar54e()"><img src="./assets/img/brand/{{d54e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t54e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar53a()"><img src="./assets/img/brand/{{d53a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t53a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar53b()"><img src="./assets/img/brand/{{d53b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t53b}}"></button>
+              <button type="button" (click)="cambiar53c()"><img src="./assets/img/brand/{{d53c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t53c}}"></button>
+              <button type="button" (click)="cambiar53d()"><img src="./assets/img/brand/{{d53d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t53d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar53e()"><img src="./assets/img/brand/{{d53e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t53e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar52a()"><img src="./assets/img/brand/{{d52a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t52a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar52b()"><img src="./assets/img/brand/{{d52b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t52b}}"></button>
+              <button type="button" (click)="cambiar52c()"><img src="./assets/img/brand/{{d52c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t52c}}"></button>
+              <button type="button" (click)="cambiar52d()"><img src="./assets/img/brand/{{d52d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t52d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar52e()"><img src="./assets/img/brand/{{d52e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t52e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar51a()"><img src="./assets/img/brand/{{d51a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t51a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar51b()"><img src="./assets/img/brand/{{d51b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t51b}}"></button>
+              <button type="button" (click)="cambiar51c()"><img src="./assets/img/brand/{{d51c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t51c}}"></button>
+              <button type="button" (click)="cambiar51d()"><img src="./assets/img/brand/{{d51d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t51d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar51e()"><img src="./assets/img/brand/{{d51e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t51e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar61a()"><img src="./assets/img/brand/{{d61a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t61a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar61b()"><img src="./assets/img/brand/{{d61b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t61b}}"></button>
+              <button type="button" (click)="cambiar61c()"><img src="./assets/img/brand/{{d61c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t61c}}"></button>
+              <button type="button" (click)="cambiar61d()"><img src="./assets/img/brand/{{d61d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t61d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar61e()"><img src="./assets/img/brand/{{d61e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t61e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar62a()"><img src="./assets/img/brand/{{d62a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t62a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar62b()"><img src="./assets/img/brand/{{d62b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t62b}}"></button>
+              <button type="button" (click)="cambiar62c()"><img src="./assets/img/brand/{{d62c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t62c}}"></button>
+              <button type="button" (click)="cambiar62d()"><img src="./assets/img/brand/{{d62d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t62d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar62e()"><img src="./assets/img/brand/{{d62e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t62e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar63a()"><img src="./assets/img/brand/{{d63a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t63a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar63b()"><img src="./assets/img/brand/{{d63b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t63b}}"></button>
+              <button type="button" (click)="cambiar63c()"><img src="./assets/img/brand/{{d63c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t63c}}"></button>
+              <button type="button" (click)="cambiar63d()"><img src="./assets/img/brand/{{d63d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t63d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar63e()"><img src="./assets/img/brand/{{d63e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t63e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar64a()"><img src="./assets/img/brand/{{d64a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t64a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar64b()"><img src="./assets/img/brand/{{d64b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t64b}}"></button>
+              <button type="button" (click)="cambiar64c()"><img src="./assets/img/brand/{{d64c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t64c}}"></button>
+              <button type="button" (click)="cambiar64d()"><img src="./assets/img/brand/{{d64d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t64d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar64e()"><img src="./assets/img/brand/{{d64e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t64e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar65a()"><img src="./assets/img/brand/{{d65a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t65a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar65b()"><img src="./assets/img/brand/{{d65b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t65b}}"></button>
+              <button type="button" (click)="cambiar65c()"><img src="./assets/img/brand/{{d65c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t65c}}"></button>
+              <button type="button" (click)="cambiar65d()"><img src="./assets/img/brand/{{d65d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t65d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar65e()"><img src="./assets/img/brand/{{d65e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t65e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+
+            <div>&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar85a()"><img src="./assets/img/brand/{{d85a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t71e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar85b()"><img src="./assets/img/brand/{{d85b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t85a}}"></button>
+              <button type="button" (click)="cambiar85c()"><img src="./assets/img/brand/{{d85c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t85b}}"></button>
+              <button type="button" (click)="cambiar85d()"><img src="./assets/img/brand/{{d85d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t85c}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar85e()"><img src="./assets/img/brand/{{d85e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t85d}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar84a()"><img src="./assets/img/brand/{{d84a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t84a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar84b()"><img src="./assets/img/brand/{{d84b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t84b}}"></button>
+              <button type="button" (click)="cambiar84c()"><img src="./assets/img/brand/{{d84c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t84c}}"></button>
+              <button type="button" (click)="cambiar84d()"><img src="./assets/img/brand/{{d84d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t84d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar84e()"><img src="./assets/img/brand/{{d84e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t84e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar83a()"><img src="./assets/img/brand/{{d83a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t83a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar83b()"><img src="./assets/img/brand/{{d83b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t83b}}"></button>
+              <button type="button" (click)="cambiar83c()"><img src="./assets/img/brand/{{d83c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t83c}}"></button>
+              <button type="button" (click)="cambiar83d()"><img src="./assets/img/brand/{{d83d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t83d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar83e()"><img src="./assets/img/brand/{{d83e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t83e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar82a()"><img src="./assets/img/brand/{{d82a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t82a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar82b()"><img src="./assets/img/brand/{{d82b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t82b}}"></button>
+              <button type="button" (click)="cambiar82c()"><img src="./assets/img/brand/{{d82c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t82c}}"></button>
+              <button type="button" (click)="cambiar82d()"><img src="./assets/img/brand/{{d82d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t82d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar82e()"><img src="./assets/img/brand/{{d82e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t82e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar81a()"><img src="./assets/img/brand/{{d81a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t81a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar81b()"><img src="./assets/img/brand/{{d81b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t81b}}"></button>
+              <button type="button" (click)="cambiar81c()"><img src="./assets/img/brand/{{d81c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t81c}}"></button>
+              <button type="button" (click)="cambiar81d()"><img src="./assets/img/brand/{{d81d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t81d}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar81e()"><img src="./assets/img/brand/{{d81e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t81e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar71a()"><img src="./assets/img/brand/{{d71a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t72e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar71b()"><img src="./assets/img/brand/{{d71b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t71a}}"></button>
+              <button type="button" (click)="cambiar71c()"><img src="./assets/img/brand/{{d71c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t71b}}"></button>
+              <button type="button" (click)="cambiar71d()"><img src="./assets/img/brand/{{d71d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t71c}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar71e()"><img src="./assets/img/brand/{{d71e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t71d}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar72a()"><img src="./assets/img/brand/{{d72a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t73e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar72b()"><img src="./assets/img/brand/{{d72b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t72a}}"></button>
+              <button type="button" (click)="cambiar72c()"><img src="./assets/img/brand/{{d72c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t72b}}"></button>
+              <button type="button" (click)="cambiar72d()"><img src="./assets/img/brand/{{d72d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t72c}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar72e()"><img src="./assets/img/brand/{{d72e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t72d}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar73a()"><img src="./assets/img/brand/{{d73a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t74e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar73b()"><img src="./assets/img/brand/{{d73b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t73a}}"></button>
+              <button type="button" (click)="cambiar73c()"><img src="./assets/img/brand/{{d73c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t73b}}"></button>
+              <button type="button" (click)="cambiar73d()"><img src="./assets/img/brand/{{d73d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t73c}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar73e()"><img src="./assets/img/brand/{{d73e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t73d}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar74a()"><img src="./assets/img/brand/{{d74a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t75e}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar74b()"><img src="./assets/img/brand/{{d74b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t74a}}"></button>
+              <button type="button" (click)="cambiar74c()"><img src="./assets/img/brand/{{d74c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t74b}}"></button>
+              <button type="button" (click)="cambiar74d()"><img src="./assets/img/brand/{{d74d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t74c}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar74e()"><img src="./assets/img/brand/{{d74e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t74d}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar75a()"><img src="./assets/img/brand/{{d75a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t75a}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button" (click)="cambiar75b()"><img src="./assets/img/brand/{{d75b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t75b}}"></button>
+              <button type="button" (click)="cambiar75c()"><img src="./assets/img/brand/{{d75c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t75c}}"></button>
+              <button type="button" (click)="cambiar75d()"><img src="./assets/img/brand/{{d75d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{tip}}"></button>
+            </div>
+            <div class="btn-group-vertical">
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              <button type="button" (click)="cambiar75e()"><img src="./assets/img/brand/{{d75e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t75d}}"></button>
+              <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+            </div>
+            <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              85 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              84 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              83 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              82 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              81 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              71 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              72 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              73 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              74 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              75
+            </h3>
+            <div>&nbsp;&nbsp;</div>
+            <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              48 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              47 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              46 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              45 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              44 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              43 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              42 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              31 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              32 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              33 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              34 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              35 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              36 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              37 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              38</h3>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar48a()"><img src="./assets/img/brand/{{d48a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t48a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar48b()"><img src="./assets/img/brand/{{d48b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t48b}}"></button>
+                <button type="button"  (click)="cambiar48c()"><img src="./assets/img/brand/{{d48c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t48c}}"></button>
+                <button type="button"  (click)="cambiar48d()"><img src="./assets/img/brand/{{d48d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t48d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar48e()"><img src="./assets/img/brand/{{d48e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t48e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar47a()"><img src="./assets/img/brand/{{d47a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t47a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar47b()"><img src="./assets/img/brand/{{d47b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t47b}}"></button>
+                <button type="button"  (click)="cambiar47c()"><img src="./assets/img/brand/{{d47c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t47c}}"></button>
+                <button type="button"  (click)="cambiar47d()"><img src="./assets/img/brand/{{d47d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t47d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar47e()"><img src="./assets/img/brand/{{d47e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t47e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar46a()"><img src="./assets/img/brand/{{d46a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t46a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar46b()"><img src="./assets/img/brand/{{d46b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t46b}}"></button>
+                <button type="button"  (click)="cambiar46c()"><img src="./assets/img/brand/{{d46c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t46c}}"></button>
+                <button type="button"  (click)="cambiar46d()"><img src="./assets/img/brand/{{d46d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t46d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar46e()"><img src="./assets/img/brand/{{d46e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t46e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar45a()"><img src="./assets/img/brand/{{d45a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t45a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar45b()"><img src="./assets/img/brand/{{d45b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t45b}}"></button>
+                <button type="button"  (click)="cambiar45c()"><img src="./assets/img/brand/{{d45c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t45c}}"></button>
+                <button type="button"  (click)="cambiar45d()"><img src="./assets/img/brand/{{d45d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t45d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar45e()"><img src="./assets/img/brand/{{d45e}}.png"style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t45e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar44a()"><img src="./assets/img/brand/{{d44a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t44a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar44b()"><img src="./assets/img/brand/{{d44b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t44b}}"></button>
+                <button type="button"  (click)="cambiar44c()"><img src="./assets/img/brand/{{d44c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t44c}}"></button>
+                <button type="button"  (click)="cambiar44d()"><img src="./assets/img/brand/{{d44d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t44d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar44e()"><img src="./assets/img/brand/{{d44e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t44e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar43a()"><img src="./assets/img/brand/{{d43a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t43a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar43b()"><img src="./assets/img/brand/{{d43b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t43b}}"></button>
+                <button type="button"  (click)="cambiar43c()"><img src="./assets/img/brand/{{d43c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t43c}}"></button>
+                <button type="button"  (click)="cambiar43d()"><img src="./assets/img/brand/{{d43d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t43d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar43e()"><img src="./assets/img/brand/{{d43e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t43e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar42a()"><img src="./assets/img/brand/{{d42a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t42a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar42b()"><img src="./assets/img/brand/{{d42b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t42b}}"></button>
+                <button type="button"  (click)="cambiar42c()"><img src="./assets/img/brand/{{d42c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t42c}}"></button>
+                <button type="button"  (click)="cambiar42d()"><img src="./assets/img/brand/{{d42d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t42d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar42e()"><img src="./assets/img/brand/{{d42e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t42e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar41a()"><img src="./assets/img/brand/{{d41a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t41a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar41b()"><img src="./assets/img/brand/{{d41b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t41b}}"></button>
+                <button type="button"  (click)="cambiar41c()"><img src="./assets/img/brand/{{d41c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t41c}}"></button>
+                <button type="button"  (click)="cambiar41d()"><img src="./assets/img/brand/{{d41d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t41d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar41e()"><img src="./assets/img/brand/{{d41e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t41e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar31a()"><img src="./assets/img/brand/{{d31a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t31a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar31b()"><img src="./assets/img/brand/{{d31b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t31b}}"></button>
+                <button type="button"  (click)="cambiar31c()"><img src="./assets/img/brand/{{d31c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t31c}}"></button>
+                <button type="button"  (click)="cambiar31d()"><img src="./assets/img/brand/{{d31d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t31d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar31e()"><img src="./assets/img/brand/{{d31e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t31e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar32a()"><img src="./assets/img/brand/{{d32a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t32a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar32b()"><img src="./assets/img/brand/{{d32b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t32b}}"></button>
+                <button type="button"  (click)="cambiar32c()"><img src="./assets/img/brand/{{d32c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t32c}}"></button>
+                <button type="button"  (click)="cambiar32d()"><img src="./assets/img/brand/{{d32d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t32d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar32e()"><img src="./assets/img/brand/{{d32e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t32e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar33a()"><img src="./assets/img/brand/{{d33a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t33a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar33b()"><img src="./assets/img/brand/{{d33b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t33b}}"></button>
+                <button type="button"  (click)="cambiar33c()"><img src="./assets/img/brand/{{d33c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t33c}}"></button>
+                <button type="button"  (click)="cambiar33d()"><img src="./assets/img/brand/{{d33d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t33d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar33e()"><img src="./assets/img/brand/{{d33e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t33e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar34a()"><img src="./assets/img/brand/{{d34a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t34a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar34b()"><img src="./assets/img/brand/{{d34b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t34b}}"></button>
+                <button type="button"  (click)="cambiar34c()"><img src="./assets/img/brand/{{d34c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t34c}}"></button>
+                <button type="button"  (click)="cambiar34d()"><img src="./assets/img/brand/{{d34d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t34d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar34e()"><img src="./assets/img/brand/{{d34e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t34e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar35a()"><img src="./assets/img/brand/{{d35a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t35a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar35b()"><img src="./assets/img/brand/{{d35b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t35b}}"></button>
+                <button type="button"  (click)="cambiar35c()"><img src="./assets/img/brand/{{d35c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t35c}}"></button>
+                <button type="button"  (click)="cambiar35d()"><img src="./assets/img/brand/{{d35d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t35d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar35e()"><img src="./assets/img/brand/{{d35e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t35e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar36a()"><img src="./assets/img/brand/{{d36a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t36a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar36b()"><img src="./assets/img/brand/{{d36b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t36b}}"></button>
+                <button type="button"  (click)="cambiar36c()"><img src="./assets/img/brand/{{d36c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t36c}}"></button>
+                <button type="button"  (click)="cambiar36d()"><img src="./assets/img/brand/{{d36d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t36d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar36e()"><img src="./assets/img/brand/{{d36e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t36e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar37a()"><img src="./assets/img/brand/{{d37a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t37a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar37b()"><img src="./assets/img/brand/{{d37b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t37b}}"></button>
+                <button type="button"  (click)="cambiar37c()"><img src="./assets/img/brand/{{d37c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t37c}}"></button>
+                <button type="button"  (click)="cambiar37d()"><img src="./assets/img/brand/{{d37d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t37d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar37e()"><img src="./assets/img/brand/{{d37e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t37e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">&nbsp;&nbsp;</div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar38a()"><img src="./assets/img/brand/{{d38a}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t38a}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  (click)="cambiar38b()"><img src="./assets/img/brand/{{d38b}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t38b}}"></button>
+                <button type="button"  (click)="cambiar38c()"><img src="./assets/img/brand/{{d38c}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t38c}}"></button>
+                <button type="button"  (click)="cambiar38d()"><img src="./assets/img/brand/{{d38d}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t38d}}"></button>
+              </div>
+              <div class="btn-group-vertical">
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+                <button type="button"  (click)="cambiar38e()"><img src="./assets/img/brand/{{d38e}}.png" style="height: 15px; width: 15px;" triggers="hover focus click" ngbTooltip="{{t38e}}"></button>
+                <button type="button"  disabled><img src="./assets/img/brand/0.png" style="height: 15px; width: 15px;"></button>
+              </div>
+            <div>&nbsp;&nbsp;</div>
+          </div>
+          <hr>
+          <div class="row" style="text-align: center;">
+            <div class="table-responsive">
+              <table class="table table-bordered" >
+                <thead>
+                  <tr>
+                    <th scope="col" colspan="15">7 INDICADORES DE SALUD BUCAL</th>
+                    <th scope="col" colspan="5">8 ÍNDICES CPO-ceo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="col" colspan="9">HIGIENE ORAL SIMPLIFICADO</td>
+                    <th scope="col" colspan="2">ENFERMEDAD<br>PERIODENTAL</th>
+                    <th scope="col" colspan="2">MAL OCLUSIÓN</th>
+                    <th scope="col" colspan="2">FLUOROSIS</th>
+                    <th scope="col">D</th>
+                    <th scope="col">C</th>
+                    <th scope="col">P</th>
+                    <th scope="col">O</th>
+                    <th scope="col">TOTAL</th>
+                  </tr>
+                  <tr>
+                    <th scope="row" colspan="6">PIEZAS DENTALES</th>
+                    <td class="margent">PLACA<br>0-1-2-3</td>
+                    <td class="margent">CALCULO<br>0-1-2-3</td>
+                    <td class="margent">GINGIVITIS<br>0-1</td>
+                    <td>LEVE</td>
+                    <td>&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="enfermedad_periodontal1()"><img src="./assets/img/brand/{{ep1}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</td>
+                    <td>ANGLE I</td>
+                    <td>&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="mal_oclusion1()"><img src="./assets/img/brand/{{mo1}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</td>
+                    <td>LEVE</td>
+                    <td>&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="fluorosis1()"><img src="./assets/img/brand/{{fl1}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</td>
+                    <td></td>
+                    <td><input class="form-control form-control-alternative" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_2" name="cpo_c" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_cpo()" [(ngModel)]="cpo_c" type="text" ></td>
+                    <td><input class="form-control form-control-alternative" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_2" name="cpo_p" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_cpo()" [(ngModel)]="cpo_p" type="text" ></td>
+                    <td><input class="form-control form-control-alternative" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_2" name="cpo_o" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_cpo()" [(ngModel)]="cpo_o" type="text" ></td>
+                    <td><input class="form-control form-control-alternative" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_2" name="cpo_t" style="background-color: rgb(240, 240, 240);" [(ngModel)]="cpo_t" disabled="true" type="text" ></td>
+                  </tr>
+                  <tr>
+                    <td>16</td>
+                    <td>&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental16()"><img src="./assets/img/brand/{{p16}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</td>
+                    <td>17</td>
+                    <td>&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental17()"><img src="./assets/img/brand/{{p17}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</td>
+                    <td>55</td>
+                    <td>&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental55()"><img src="./assets/img/brand/{{p55}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button>&nbsp;&nbsp;</td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_placa()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_1" type="text" [(ngModel)]="placa_1" ></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_calculo()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="calculo_1" type="text" [(ngModel)]="calculo_1" ></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="gingivitiss_gingivitis()"  onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="gingivitis_1" type="text" [(ngModel)]="gingivitis_1" ></td>
+                    <td>MODERAD</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="enfermedad_periodontal2()"><img src="./assets/img/brand/{{ep2}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>ANGLE II</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="mal_oclusion2()"><img src="./assets/img/brand/{{mo2}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>MODERADO</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="fluorosis2()"><img src="./assets/img/brand/{{fl2}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <th scope="col">d</th>
+                    <th scope="col">c</th>
+                    <th scope="col">e</th>
+                    <th scope="col">o</th>
+                    <th scope="col">TOTAL</th>
+                  </tr>
+                  <tr>
+                    <td>11</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental11()"><img src="./assets/img/brand/{{p11}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>21</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental21()"><img src="./assets/img/brand/{{p21}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>51</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental51()"><img src="./assets/img/brand/{{p51}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_placa()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_2" type="text" [(ngModel)]="placa_2" ></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_calculo()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="calculo_2" type="text" [(ngModel)]="calculo_2" ></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="gingivitiss_gingivitis()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="gingivitis_2" type="text" [(ngModel)]="gingivitis_2" ></td>
+                    <td>SEVERA</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="enfermedad_periodontal3()"><img src="./assets/img/brand/{{ep3}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>ANGLE III</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="mal_oclusion3()"><img src="./assets/img/brand/{{mo3}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>SEVERA</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="fluorosis3()"><img src="./assets/img/brand/{{fl3}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td></td>
+                    <td><input class="form-control form-control-alternative" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_2" name="ceo_c" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_ceo()" [(ngModel)]="ceo_c"  type="text" ></td>
+                    <td><input class="form-control form-control-alternative" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_2" name="ceo_e" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_ceo()" [(ngModel)]="ceo_e"  type="text" ></td>
+                    <td><input class="form-control form-control-alternative" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_2" name="ceo_o" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_ceo()" [(ngModel)]="ceo_o"  type="text" ></td>
+                    <td><input class="form-control form-control-alternative" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_2" name="ceo_t" style="background-color: rgb(240, 240, 240);" [(ngModel)]="ceo_t" disabled="true" type="text" ></td>
+                  </tr>
+                  <tr>
+                    <td>26</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental26()"><img src="./assets/img/brand/{{p26}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>27</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental27()"><img src="./assets/img/brand/{{p27}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>65</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental65()"><img src="./assets/img/brand/{{p65}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_placa()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_3" type="text" [(ngModel)]="placa_3" ></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_calculo()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="calculo_3" type="text" [(ngModel)]="calculo_3" ></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="gingivitiss_gingivitis()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="gingivitis_3" type="text" [(ngModel)]="gingivitis_3" ></td>
+                    <td colspan="11">9 SIMBOLOGÍA DEL ODONTOGRAMA</td>
+                  </tr>
+                  <tr>
+                    <td>36</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental36()"><img src="./assets/img/brand/{{p36}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>37</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental37()"><img src="./assets/img/brand/{{p37}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>75</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental75()"><img src="./assets/img/brand/{{p75}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_placa()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_4" type="text" [(ngModel)]="placa_4" ></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_calculo()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="calculo_4" type="text" [(ngModel)]="calculo_4" ></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="gingivitiss_gingivitis()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="gingivitis_4" type="text" [(ngModel)]="gingivitis_4" ></td>
+                    <td colspan="4">
+                      <img src="./assets/img/brand/4.png"  style="height: 15px; width: 15px;">
+                      <h5>Sellante Necesario</h5>
+                    </td>
+                    <td colspan="4">
+                      <img src="./assets/img/brand/9.png"  style="height: 15px; width: 15px;">
+                      <h5>Pérdida (Otra Causa)</h5>
+                    </td>
+                    <td colspan="3">
+                      <img src="./assets/img/brand/10.png"  style="height: 15px; width: 15px;">
+                      <h5>Prótesis Total</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>31</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental31()"><img src="./assets/img/brand/{{p31}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>41</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental41()"><img src="./assets/img/brand/{{p41}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>71</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental71()"><img src="./assets/img/brand/{{p71}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_placa()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_5" type="text" [(ngModel)]="placa_5" ></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_calculo()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="calculo_5" type="text" [(ngModel)]="calculo_5" ></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="gingivitiss_gingivitis()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="gingivitis_5" type="text" [(ngModel)]="gingivitis_5" ></td>
+                    <td colspan="4">
+                      <img src="./assets/img/brand/5.png"  style="height: 15px; width: 15px;">
+                      <h5>Sellante Realizado</h5>
+                    </td>
+                    <td colspan="4">
+                      <img src="./assets/img/brand/8.png"  style="height: 15px; width: 15px;">
+                      <h5>Endodoncia</h5>
+                    </td>
+                    <td colspan="3">
+                      <img src="./assets/img/brand/7.png"  style="height: 15px; width: 15px;">
+                      <h5>Obturado</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>46</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental46()"><img src="./assets/img/brand/{{p46}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>47</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental47()"><img src="./assets/img/brand/{{p47}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td>85</td>
+                    <td><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_pieza_dental85()"><img src="./assets/img/brand/{{p85}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_placa()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_6" type="text" [(ngModel)]="placa_6" ></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="calculos_calculo()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="calculo_6" type="text" [(ngModel)]="calculo_6" ></td>
+                    <td><input class="form-control form-control-alternative" maxlength="1" style="background-color: rgb(240, 240, 240);" (keyup)="gingivitiss_gingivitis()" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="gingivitis_6" type="text" [(ngModel)]="gingivitis_6" ></td>
+                    <td colspan="4">
+                      <img src="./assets/img/brand/2.png"  style="height: 15px; width: 15px;">
+                      <h5>Extracción Indicada</h5>
+                     </td>
+                     <td colspan="4">
+                       <img src="./assets/img/brand/11.png"  style="height: 15px; width: 15px;">
+                       <h5>Prótesis Fija</h5>
+                     </td>
+                     <td colspan="3">
+                       <img src="./assets/img/brand/6.png"  style="height: 15px; width: 15px;">
+                      <h5>Caries</h5>
+                     </td>
+                  </tr>
+                  <tr>
+                    <td colspan="6">TOTALES</td>
+                    <td><input class="form-control form-control-alternative" disabled="true" name="placa_t" type="text" style="background-color: rgb(240, 240, 240);" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_2" [(ngModel)]="placa_t" ></td>
+                    <td><input class="form-control form-control-alternative" disabled="true" name="calculo_t" type="text" style="background-color: rgb(240, 240, 240);" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_2" [(ngModel)]="calculo_t" ></td>
+                    <td><input class="form-control form-control-alternative" disabled="true" name="gingivitis_t" type="text" style="background-color: rgb(240, 240, 240);" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="placa_2" [(ngModel)]="gingivitis_t" ></td>
+                    <td colspan="4">
+                      <img src="./assets/img/brand/3.png"  style="height: 15px; width: 15px;">
+                      <h5>Pérdida por Caries</h5>
+                    </td>
+                    <td colspan="4">
+                      <img src="./assets/img/brand/12.png"  style="height: 15px; width: 15px;">
+                      <h5>Prótesis Remobible</h5>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+            <div class="table-responsive">
+              <table class="table table-bordered" >
+                <thead>
+                  <tr>
+                    <th scope="col" colspan="19">10 PLANES DE DIAGNÓSTICO, TERAPÉUTICOS Y EDUCACIONAL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="col" colspan="1"><label class="form-check-label" for="inlineRadio1">Biometria <br>&nbsp;</label></td>
+                    <td scope="col" colspan="1">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_p_diagnostico1()"><img src="./assets/img/brand/{{p_diagnostico1}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td scope="col" colspan="1"><label class="form-check-label" for="inlineRadio1">Quimica<br>sanguinea</label></td>
+                    <td scope="col" colspan="1">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_p_diagnostico2()"><img src="./assets/img/brand/{{p_diagnostico2}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td scope="col" colspan="1"><label class="form-check-label" for="inlineRadio1">Rayos<br>X</label></td>
+                    <td scope="col" colspan="1">&nbsp;&nbsp;<button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_p_diagnostico3()"><img src="./assets/img/brand/{{p_diagnostico3}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td scope="col" colspan="1"><label class="form-check-label" for="inlineRadio1">Otros</label></td>
+                    <td scope="col" colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td scope="col" colspan="19"><textarea class="form-control form-control-alternative" style="background-color: rgb(240, 240, 240);" [(ngModel)]="otros_diagnostico" name="otros_diagnostico"></textarea></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <br>
+          <div class="row" style="text-align: center;">
+            <div class="table-responsive">
+              <table class="table table-bordered" >
+                <thead>
+                  <tr>
+                    <th scope="col" colspan="6">11 DIAGÓSTICO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label" for="inlineRadio1">PRE=PRESUNTIVO<br>DEF=DEFINITIVO</label></th>
+                    <th scope="col" colspan="1">CIE</th>
+                    <th scope="col" colspan="1">PRE</th>
+                    <th scope="col" colspan="1">DEF</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="col" colspan="6"><textarea class="form-control form-control-alternative" style="background-color: rgb(240, 240, 240);" [(ngModel)]="diagnostico" name="diagnostico" type="textarea"></textarea></td>
+                    <td scope="col"><input class="form-control form-control-alternative" style="background-color: rgb(240, 240, 240);" [(ngModel)]="cie" name="cie" type="text" ></td>
+                    <td scope="col"><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_diagnostico1()"><img src="./assets/img/brand/{{pre}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                    <td scope="col"><button type="radio" class="btn btn-outline-primary btn-sm form-check-input" (click)="cambio_diagnostico2()"><img src="./assets/img/brand/{{dif}}.png" style="height: 15px; width: 15px;" triggers="hover focus click"></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="table-responsive">
+              <table class="table table-bordered" >
+                <thead>
+                  <tr>
+                    <th colspan="7">12 TRATAMIENTO</th>
+                  </tr>
+                  <tr>
+                    <th colspan="2">SESIÓN Y FECHA</th>
+                    <th colspan="1">DIAGNOSTICOS Y COMPLICACIONES</th>
+                    <th colspan="1">PROCEDIMIENTOS</th>
+                    <th colspan="1">PRESCRIPCIONES</th>
+                    <th colspan="2">CÓDIGO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="1">SESIÓN</td>
+                    <td colspan="1"><input class="form-control form-control-alternative" disabled="true" name="sesion" style="background-color: rgb(240, 240, 240);" [(ngModel)]="sesion" type="text" ></td>
+                    <td><textarea class="form-control form-control-alternative" name="diagnostico_complicaciones" style="background-color: rgb(240, 240, 240);" [(ngModel)]="diagnostico_complicaciones" type="text" ></textarea></td>
+                    <td><textarea class="form-control form-control-alternative" name="procedimientos" style="background-color: rgb(240, 240, 240);" [(ngModel)]="procedimientos" type="text" ></textarea></td>
+                    <td><textarea class="form-control form-control-alternative" name="prescripciones" style="background-color: rgb(240, 240, 240);" [(ngModel)]="prescripciones" type="text" ></textarea></td>
+                    <td colspan="1">CÓDIGO</td>
+                    <td colspan="1"><input class="form-control form-control-alternative" name="codigo" style="background-color: rgb(240, 240, 240);" [(ngModel)]="codigo" type="text" ></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">FECHA</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><input class="form-control form-control-alternative" style="background-color: rgb(240, 240, 240);" [(ngModel)]="fecha" placeholder="{{fecha}}" name="fecha" type="date"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-primary my-4" id="guardar" (click)="guardar_historia()">GUARDAR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

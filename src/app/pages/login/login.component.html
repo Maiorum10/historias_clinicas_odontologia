@@ -1,0 +1,46 @@
+<div class="header bg-gradient-primary py-7 py-lg-8">
+  <div class="container">
+    <div class="header-body text-center mb-7">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6">
+          <h1 class="text-white">Bienvenidos</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-body px-lg-5 py-lg-5">
+          <div class="text-center text-muted mb-4">
+            <small>Iniciar sesion</small>
+          </div>
+          <form role="form">
+            <div class="form-group mb-3">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="background-color: rgb(240, 240, 240);"><i class="ni ni-badge"></i></span>
+                </div>
+                <input class="form-control" style="background-color: rgb(240, 240, 240);" [(ngModel)]="cedula" placeholder="Cedula" maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" name="cedula" type="Cedula">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="background-color: rgb(240, 240, 240);"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input class="form-control" style="background-color: rgb(240, 240, 240);" [(ngModel)]="clave" placeholder="Contraseña" name="clave" type="password">
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btn btn-primary my-4" (click)="ingresar()">INGRESAR</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

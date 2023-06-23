@@ -1,0 +1,277 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-gradient-primary opacity-8"></span>
+  <!-- Header container -->
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0" id="resumen" style="display: none;">
+      <div class="card card-profile shadow">
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="d-flex justify-content-between">
+            <a routerLinkActive="active" [routerLink]="['/detalles']" class="btn btn-sm btn-info mr-4">Historia clínica</a>
+            <a routerLinkActive="active" [routerLink]="['/tables']" class="btn btn-sm btn-default float-right">Consentimientos</a>
+          </div>
+        </div>
+        <div class="card-body pt-0 pt-md-4">
+          <div class="row">
+          </div>
+          <div class="text-center">
+            <h3>
+              {{nombre}} {{apellido}}<span class="font-weight-light">, {{edad}}</span>
+            </h3>
+            <div class="h5 font-weight-300">
+              <i class="ni location_pin mr-2"></i>{{canton}}, {{provincia}}
+            </div>
+            <div class="h5 font-weight-300">
+              <i class="ni location_pin mr-2"></i>{{cedula}}
+            </div>
+            <div class="h5 mt-4">
+              <i class="ni business_briefcase-24 mr-2"></i>{{ocupacion}} - {{empresa}}
+            </div>
+            <div>
+              <i class="ni education_hat mr-2"></i>Teléfono: {{celular}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Datos personales</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="pl-lg-4">
+              <div class="row" id="buscador" style="display: block;">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Ingrese la cédula</label>
+                    <input type="text" [(ngModel)]="cedula2" id="buscador" name="buscador" maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" (keyup)="buscador()" type="text" class="form-control form-control-alternative" placeholder="Ingrese para buscar">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Nombre</label>
+                    <input type="text" [(ngModel)]="nombre" name="nombre" onkeydown="return /[áéíóúÁÉÍÓÚa-zA-Zñ]/i.test(event.key)" class="form-control form-control-alternative" placeholder="Ingrese el nombre">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Segundo nombre</label>
+                    <input type="email" [(ngModel)]="s_nombre" name="s_nombre" onkeydown="return /[áéíóúÁÉÍÓÚa-zA-Zñ]/i.test(event.key)" class="form-control form-control-alternative" placeholder="Ingrese el segundo nombre">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Apellido</label>
+                    <input type="text" [(ngModel)]="apellido" name="apellido" onkeydown="return /[áéíóúÁÉÍÓÚa-zA-Zñ]/i.test(event.key)" class="form-control form-control-alternative" placeholder="Ingrese el apellido">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Segundo apellido</label>
+                    <input type="text" [(ngModel)]="s_apellido" name="s_apellido" onkeydown="return /[áéíóúÁÉÍÓÚa-zA-Zñ]/i.test(event.key)" class="form-control form-control-alternative" placeholder="Ingrese el segundo apellido">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Cédula</label>
+                    <input type="text" [(ngModel)]="cedula" name="cedula" maxlength="10" disabled="true" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" class="form-control form-control-alternative" placeholder="Ingrese la cédula">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Celular</label>
+                    <input type="text" [(ngModel)]="celular" name="celular" maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" class="form-control form-control-alternative" placeholder="Ingrese el número de celular">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Fecha de nacimiento</label>
+                    <input type="date" [(ngModel)]="fecha_n" id="inputdate" name="fecha_n" (keyup)="calendar()" class="form-control form-control-alternative" placeholder="Ingrese la fecha de nacimiento">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Sexo</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="btn-group">
+                      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" style="width: 275px; height:41px" aria-expanded="false">
+                        {{sexo}}
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" (click)="sexos('Masculino')">Masculino</a></li>
+                        <li><a class="dropdown-item" (click)="sexos('Femenino')">Femenino</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Lugar de nacimiento</label>
+                    <input type="text" [(ngModel)]="lug_nacimiento" name="lug_nacimiento" onkeydown="return /[áéíóúÁÉÍÓÚa-zA-Zñ]/i.test(event.key)" class="form-control form-control-alternative" placeholder="Ingrese el lugar de nacimiento">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Estado civil</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="btn-group">
+                      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" style="width: 275px; height:41px" aria-expanded="false">
+                        {{est_civil}}
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" (click)="estados('Soltero')">Soltero</a></li>
+                        <li><a class="dropdown-item" (click)="estados('Casado')">Casado</a></li>
+                        <li><a class="dropdown-item" (click)="estados('Divorciado')">Divorciado</a></li>
+                        <li><a class="dropdown-item" (click)="estados('Viudo')">Viudo</a></li>
+                        <li><a class="dropdown-item" (click)="estados('Union de hecho')">Unión de hecho</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Ocupación</label>
+                    <input type="text" [(ngModel)]="ocupacion" name="ocupacion" onkeydown="return /[áéíóúÁÉÍÓÚa -zA-Zñ]/i.test(event.key)" class="form-control form-control-alternative" placeholder="Ingrese la ocupación">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Institución</label>
+                    <input type="text" [(ngModel)]="empresa" name="empresa" onkeydown="return /[áéíóúÁÉÍÓÚa -zA-Zñ]/i.test(event.key)" class="form-control form-control-alternative" placeholder="Ingrese la institución">
+                  </div>
+                </div>
+              </div>
+              <hr><h2>
+                Datos de residencia
+              </h2><br>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Cantón</label>
+                    <input type="text" [(ngModel)]="canton" name="canton" onkeydown="return /[áéíóúÁÉÍÓÚa-zA-Zñ]/i.test(event.key)" class="form-control form-control-alternative" placeholder="Ingrese el cantón de residencia">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Provincia</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="btn-group">
+                      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" style="width: 275px; height:41px" aria-expanded="false">
+                        {{provincia}}
+                      </button>
+                      <ul class="dropdown-menu" style="width: fit-content; height: 250px; overflow-y: auto; overflow-x: hidden">
+                        <li><a class="dropdown-item" (click)="provincias('Azuay')">Azuay</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Bolivar')">Bolivar</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Cañar')">Cañar</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Carchi')">Carchi</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Chimborazo')">Chimborazo</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Cotopaxi')">Cotopaxi</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('El Oro')">El Oro</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Esmeraldas')">Esmeraldas</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Galápagos')">Galápagos </a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Guayas')">Guayas</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Imbabura')">Imbabura</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Loja')">Loja</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Los Rios')">Los Rios</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Manabí')">Manabí</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Morona')">Morona Santiago</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Napo')">Napo</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Orellana')">Orellana</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Pastaza')">Pastaza</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Pichincha')">Pichincha</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Santa Elena')">Santa Elena</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Santo Domingo de los Tsáchilas')">Santo Domingo de los Tsáchilas</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Sucumbíos')">Sucumbíos</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Tungurahua')">Tungurahua</a></li>
+                        <li><a class="dropdown-item" (click)="provincias('Zamora Chinchipe')">Zamora Chinchipe</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Dirección</label>
+                    <input type="text" [(ngModel)]="direccion" name="direccion" class="form-control form-control-alternative" placeholder="Ingrese la dirección">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Parroquia</label>
+                    <input type="text" [(ngModel)]="parroquia" name="parroquia" onkeydown="return /[áéíóúÁÉÍÓÚa -zA-Zñ]/i.test(event.key)" class="form-control form-control-alternative" placeholder="Ingrese la parroquia">
+                  </div>
+                </div>
+              </div>
+              <hr><h2>
+                Datos de referencia
+              </h2><br>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Seguro</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="btn-group">
+                      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" style="width: 275px; height:41px" aria-expanded="false">
+                        {{seguro}}
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" (click)="seguros('Público')">IESS</a></li>
+                        <li><a class="dropdown-item" (click)="seguros('Privado')">Privado</a></li>
+                        <li><a class="dropdown-item" (click)="seguros('No tiene')">No tiene</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Nombre de la referencia familiar</label>
+                    <input type="text" [(ngModel)]="referencia" name="referencia" onkeydown="return /[áéíóúÁÉÍÓÚa -zA-Zñ]/i.test(event.key)" class="form-control form-control-alternative" placeholder="Ingrese la referencia">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Contacto de la referencia familiar</label>
+                    <input type="text" [(ngModel)]="tel_referencia" name="tel_referencia" maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" class="form-control form-control-alternative" placeholder="Ingrese el número de referencia">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Parentezco de la referencia familiar</label>
+                    <input type="text" [(ngModel)]="par_referencia" name="par_referencia" onkeydown="return /[áéíóúÁÉÍÓÚa-zA-Zñ]/i.test(event.key)" class="form-control form-control-alternative" placeholder="Ingrese el parentezco de referencia">
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <button type="button" class="btn btn-danger btn-lg" (click)="actualizar()">Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-gradient-primary opacity-8"></span>
+  <div class="container-fluid">
+    <button type="button" class="btn btn-light" routerLinkActive="active" [routerLink]="['/maps']">Regresar</button>
+  </div>
+  <!-- Header container -->
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0" id="resumen" style="display: none;">
+      <div class="card card-profile shadow">
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="d-flex justify-content-between">
+            <a class="btn btn-sm btn-info mr-4" (click)="nuevo()">Nuevo</a>
+            <a class="btn btn-sm btn-default float-right" style="color: white;" (click)="pdf()">Reporte de tratamientos</a>
+          </div>
+        </div>
+        <div class="card-body pt-0 pt-md-4">
+          <div class="row">
+          </div>
+          <div class="text-center">
+            <h3>
+              {{nombre}} {{apellido}}<span class="font-weight-light">, {{edad}}</span>
+            </h3>
+            <div class="h5 font-weight-300">
+              <i class="ni location_pin mr-2"></i>{{canton}}, {{provincia}}
+            </div>
+            <div class="h5 font-weight-300">
+              <i class="ni location_pin mr-2"></i>{{cedula}}
+            </div>
+            <div class="h5 mt-4">
+              <i class="ni business_briefcase-24 mr-2"></i>{{ocupacion}} - {{empresa}}
+            </div>
+            <div>
+              <i class="ni education_hat mr-2"></i>Teléfono: {{celular}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Número de historia clínica: {{id_historia}}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="form">
+                    <label class="form-control-label">Consultas médicas por fecha:</label>
+                    <table class="table tb table-striped">
+                      <tr *ngFor="let detalle of detalles; let first = first; let last = last;">
+                          <td class="text-uppercase">{{detalle.sesion}}</td>
+                          <td class="text-uppercase">Fecha de atención:</td>
+                          <td class="text-uppercase">{{detalle.fecha}}</td>
+                          <td><button type="button" class="btn btn-outline-primary btn-sm" (click)="previsualizar(detalle)">Previsualizar</button>
+                              <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal" (click)="evolucion(detalle)">Evolución de cita</button></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Evolución de cita</h5>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered" >
+          <thead>
+            <tr>
+              <th scope="col" colspan="2">DIAGNOSTICOS Y COMPLICACIONES</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="col" colspan="2">{{diagnostico_complicaciones}}</td>
+            </tr>
+            <tr>
+              <td scope="col" colspan="2">PROCEDIMIENTOS</td>
+            </tr>
+            <tr>
+              <td scope="col" colspan="2">{{procedimientos}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: rgb(240, 240, 240);" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<table class="table" id="pdf" style="display: none;">
+  <thead style="background-color: rgb(79, 79, 206); color: white">
+    <tr>
+      <th scope="col">Sesión</th>
+      <th scope="col">Nombre del Médico</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Nombre del Paciente</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Diagnóstico</th>
+      <th scope="col">Procedimiento</th>
+      <th scope="col">Prescripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let historia of historias; let first = first; let last = last;">
+      <th scope="row">{{historia.sesion}}</th>
+      <td>{{historia.nombre}}</td>
+      <td>{{historia.apellido}}</td>
+      <td>{{historia.p_nombre}}</td>
+      <td>{{historia.p_apellido}}</td>
+      <td>{{historia.fecha}}</td>
+      <td>{{historia.diagnosticos_complicaciones}}</td>
+      <td>{{historia.procedimientos}}</td>
+      <td>{{historia.prescripcion}}</td>
+    </tr>
+  </tbody>
+</table>
